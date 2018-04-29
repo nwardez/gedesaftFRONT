@@ -1,0 +1,77 @@
+<div class="container" 
+[ngStyle.md]="{'width.em': 50, 'height.em': 60}"
+[ngStyle.sm]="{'width.em': 40, 'height.em': 60}" 
+[ngStyle.xs]="{'width.em': 30, 'height.em': 60}">
+
+    <div class="titre"
+    [ngStyle.md]="{'width.em': 50, 'height.em': 4}"
+    [ngStyle.sm]="{'width.em': 40, 'height.em': 4}" 
+    [ngStyle.xs]="{'width.em': 30, 'height.em': 4}">
+        <h1>Détails d'une arme</h1>
+    </div>
+
+    <form #formCreate (ngSubmit)="updateArme(formCreate)" class="formulaire"
+    [ngStyle.md]="{'width.em': 50, 'height.em': 66}"
+    [ngStyle.sm]="{'width.em': 40, 'height.em': 56}" 
+    [ngStyle.xs]="{'width.em': 30, 'height.em': 66}">
+
+        <div class="ligne1" 
+        fxLayout.sm="column"
+        fxLayout.xs="column">
+                <div class="coteGauche"
+                fxLayout="column"
+                fxLayout.sm="row"
+                fxLayout.xs="row"
+                [ngStyle.sm]="{'width.%': 100, 'height.em': 15}" 
+                [ngStyle.xs]="{'width.%': 100, 'height.em': 15}"> 
+  
+                    <!--Type-->
+                    <div class="type">
+                      <mat-form-field>
+                          <input matInput type="text" name="type" placeholder="{{arme.type}}" 
+                          [(ngModel)]="arme.type"> 
+                      </mat-form-field>
+                    </div>
+                    <!--modèle-->
+                    <div class="modele">
+                      <mat-form-field>
+                          <input matInput type="text" name="modele" placeholder="{{arme.modele}}" 
+                          [(ngModel)]="arme.modele"> 
+                      </mat-form-field>
+                    </div>
+                </div>
+              
+                <div class="coteDroit"
+                fxLayout="column"
+                [ngStyle.sm]="{'width.%': 100, 'height.em': 25}" 
+                [ngStyle.xs]="{'width.%': 100, 'height.em': 25}">
+
+
+                  <!--calibre-->
+                  <div class="calibre">
+                    <mat-form-field>
+                        <input matInput type="text" name="calibre" placeholder="{{arme.calibre}}" 
+                        [(ngModel)]="arme.calibre"> 
+                    </mat-form-field>
+                  </div>
+       
+                </div>
+       </div>
+    
+       <div class="ligne3">
+            <button 
+            [ngStyle.sm]="{'width.%': 40, 'height.em': 4, 'border-radius.%': 0}" 
+            [ngStyle.xs]="{'width.%': 40, 'height.em': 4, 'border-radius.%': 0}" 
+            type="submit">Modifier<mat-icon>edit</mat-icon></button>
+
+
+        </div>
+      </form>
+      <button  
+      (click)="deleteArme()"
+      [ngStyle.sm]="{'width.%': 40, 'height.em': 4, 'border-radius.%': 0}" 
+      [ngStyle.xs]="{'width.%': 40, 'height.em': 4, 'border-radius.%': 0}" 
+      >Supprimer<mat-icon>delete</mat-icon></button>
+
+</div>
+

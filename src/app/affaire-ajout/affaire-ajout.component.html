@@ -1,0 +1,39 @@
+<div class="" >
+
+    <div class="">
+        <h1>Création d'une affaire</h1>
+    </div>
+
+    <form #formCreate (ngSubmit)="onSubmit(formCreate)" class="">
+                 
+                   
+                    <mat-form-field>
+                      <input matInput type="text" name="dossier" placeholder="dossier" 
+                      [(ngModel)]="affaire.dossier"> 
+                    </mat-form-field>
+              
+            
+                    <mat-form-field class="">
+                      <input matInput type="text" name="lieu" placeholder="lieu" [(ngModel)]="affaire.lieu"> 
+                    </mat-form-field>
+       
+                    <mat-form-field class="">
+                      <input matInput type ="text"  name="dateOuverture" placeholder="date: aaaa/mm/jj"
+                      [(ngModel)]="affaire.dateOuverture">
+                      </mat-form-field>
+
+      
+       <div class="ligne3">
+            <button   
+            [ngStyle.sm]="{'width.%': 40, 'height.em': 4, 'border-radius.%': 0}" 
+            [ngStyle.xs]="{'width.%': 40, 'height.em': 4, 'border-radius.%': 0}" 
+            type="submit">Annuler</button>
+
+            <button  
+            [ngStyle.sm]="{'width.%': 40, 'height.em': 4, 'border-radius.%': 0}" 
+            [ngStyle.xs]="{'width.%': 40, 'height.em': 4, 'border-radius.%': 0}" 
+            type="submit">Soumettre</button>
+        </div>
+      </form>
+</div>
+

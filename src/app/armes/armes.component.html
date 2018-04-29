@@ -1,0 +1,81 @@
+<div  class="boutonDiv" 
+[ngStyle.md]="{'width.%': 80, 'height.em': 6, 'margin-left.%': 5,  'flex-direction': column}"
+[ngStyle.sm]="{'width.%': 100, 'height.em': 10, 'margin.%': 0, 'flex-direction': column, 'margin-left.em': 0}" 
+[ngStyle.xs]="{'width.%': 100, 'height.em': 12, 'margin.%': 0, 'flex-direction': column}"
+>
+
+<!-- (click)="afficherAjoutComponent()" -->
+    <button  class="bouton" routerLink="create"
+    [ngStyle.md]="{'width.%': 30, 'height.em': 5, 'margin-left.%': 1, 'margin.%': 1}"
+    [ngStyle.sm]="{'width.%': 80, 'height.em': 4, 'margin.%': 1, 'border-radius': 0}" 
+    [ngStyle.xs]="{'width.%': 80, 'height.em': 4, 'margin.%': 0, 'border-radius': 0}">
+      <p class="texte" fxHide.xs>Ajouter une arme</p>
+      <mat-icon class="icon" aria-label="Icon plus pour ajouter une arme" >add_circle</mat-icon>
+    </button>
+</div>
+
+<div class="container"  [ngStyle.md]="{'justify-content': center}">
+
+  <mat-card class="coteGauche"
+  [ngStyle.lg]="{'margin-top.em': 1}"
+  [ngStyle.md]="{'width.%': 80, 'height.em': 14, 'margin-left.em': 0, 'margin-bottom': 0.5}"
+  [ngStyle.sm]="{'width.%': 100, 'height.em': 14, 'margin-left.em': 0, 'margin-bottom': 0.5}" 
+  [ngStyle.xs]="{'width.%': 100, 'height.em': 14, 'margin-left.em': 0, 'margin-bottom': 0.5}">
+
+
+              
+                <!--Filtre pour recherche une arme -->
+               <mat-form-field>
+                  <input matInput (keyup)="filtrerTableau($event.target.value)" placeholder="Recherche d'un arme">
+                </mat-form-field>
+                <!-- Affichage tableau des armes -->
+                <mat-table [dataSource]="dataList" matSort>
+                    
+                  <ng-container matColumnDef ="type">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header><strong>Type</strong></mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{element.type | uppercase}}</mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef ="modele">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header>Modèle</mat-header-cell>
+                      <mat-cell *matCellDef="let element">{{element.modele}}</mat-cell>
+                    </ng-container>
+                    <!-- <ng-container matColumnDef ="noSerie">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Numéro de série</mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.noSerie}}</mat-cell>
+                    </ng-container> -->
+                    <ng-container matColumnDef="editer">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                      <mat-cell *matCellDef="let element" >
+                           <button mat-raised-button (click)="afficherId(element.id)" >Editer</button> 
+                      </mat-cell>
+                    </ng-container>
+                   <!-- <ng-container matColumnDef="supprimer">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                      <mat-cell *matCellDef="let element" >
+                           <button mat-raised-button (click)="supprimerId(element.id)" >Supprimer</button> 
+                      </mat-cell>
+                  </ng-container> -->
+                    <mat-header-row *matHeaderRowDef="colonnes"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns:colonnes" ></mat-row>
+                </mat-table>
+                <mat-paginator #paginator [pageSize]=5 [pageSizeOptions]="[5,10,20]" [showFirstLastButtons]="true" >
+                </mat-paginator>
+              </mat-card>
+
+
+<!--coté droit-->
+    <!--RouterLinkCHild sur les 3 composants : rechercheAvancée, détail, ajout-->
+      <mat-card class="coteDroit"
+      [ngStyle.md]="{'width.%': 80, 'height.%': auto, 'margin-bottom': 0.5}"
+      [ngStyle.sm]="{'width.%': 100, 'height.em': 30, 'margin-bottom': 0.5}" 
+      [ngStyle.xs]="{'width.%': 100, 'height.em': 30, 'margin-bottom': 0.5}">
+
+        <router-outlet></router-outlet>
+        
+      </mat-card>
+
+
+</div>
+
+
+

@@ -1,0 +1,92 @@
+<div *ngIf="vehicule" class="container" 
+  [ngStyle.md]="{'width.em': 50, 'height.em': 60}"
+  [ngStyle.sm]="{'width.em': 40, 'height.em': 60}" 
+  [ngStyle.xs]="{'width.em': 30, 'height.em': 60}">
+
+  <div class="titre"
+    [ngStyle.md]="{'width.em': 50, 'height.em': 4}"
+    [ngStyle.sm]="{'width.em': 40, 'height.em': 4}" 
+    [ngStyle.xs]="{'width.em': 30, 'height.em': 4}">
+    <h1>Fiche de véhicule</h1>
+  </div>
+
+  <!-- Fiche d'informations du véhicule --> 
+  <div class="fiche"
+    [ngStyle.md]="{'width.em': 50, 'height.em': 66}"
+    [ngStyle.sm]="{'width.em': 40, 'height.em': 56}" 
+    [ngStyle.xs]="{'width.em': 30, 'height.em': 66}">
+
+    <div class="ligne1" 
+      fxLayout.sm="column"
+      fxLayout.xs="column">
+      
+      <!-- Coté gauche de la fiche -->
+      <div class="coteGauche" 
+        fxLayout="column"
+        [ngStyle.sm]="{'width.%': 100, 'height.em': 15}" 
+        [ngStyle.xs]="{'width.%': 100, 'height.em': 15}"> 
+  
+        <p><strong>Type:</strong> {{vehicule.type}} </p>
+        <p><strong>Modele:</strong> {{vehicule.modele}}</p>
+        <p><strong>Immatriculation:</strong> {{vehicule.immatriculation}}</p>
+      
+      </div>
+      
+      <!-- Coté droit de la fiche -->
+      <div class="coteDroit"
+        fxLayout="column"
+        [ngStyle.sm]="{'width.%': 100, 'height.em': 15}" 
+        [ngStyle.xs]="{'width.%': 100, 'height.em': 15}">
+    
+        <p><strong>Marque:</strong> {{vehicule.marque}}</p>
+        <p><strong>Couleur:</strong> {{vehicule.couleur}}</p>
+        <p><strong>Propriétaire:</strong> {{vehicule.proprietaire.nom}} , {{vehicule.proprietaire.prenom}} </p>
+       
+      </div>
+    </div>
+  </div>
+
+  <div class="containerAffaires"  [ngStyle.md]="{'justify-content': center}">
+    <!-- Affichage tableau des affaires dans lesquelles le véhicule est impliqué -->
+    <mat-table [dataSource]="dataList" matSort>
+      
+      <ng-container matColumnDef ="dossier">
+        <mat-header-cell *matHeaderCellDef mat-sort-header><strong>Nom</strong></mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.dossier}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef ="lieu">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Lieu</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.lieu}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef ="date d'ouverture">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.dateOuverture}}</mat-cell>
+      </ng-container>
+        <mat-header-row *matHeaderRowDef="colonnes"></mat-header-row>
+        <mat-row *matRowDef="let row; columns:colonnes" ></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator [pageSize]=5 [pageSizeOptions]="[5,10,20]" [showFirstLastButtons]="true" >
+    </mat-paginator>
+  </div>
+
+  <!-- Bouton de suppression du véhicule -->
+  <div class= "ligne3"
+    fxLayout.sm="column"
+    fxLayout.xs="column">
+    <button (click)="deleteVehicule()"
+      [ngStyle.sm]="{'width.%': 40, 'height.em': 4, 'border-radius.%': 0}" 
+      [ngStyle.xs]="{'width.%': 40, 'height.em': 4, 'border-radius.%': 0}"> 
+      Supprimer 
+      <mat-icon>delete</mat-icon>
+    </button>
+
+  <!-- Bouton daffichage du formulaire d'édition du véhicule -->
+    <button mat-icon-button href="" routerLink="../../edit/{{vehicule?.id}}"
+      [ngStyle.sm]="{'width.%': 40, 'height.em': 4, 'border-radius.%': 0}" 
+      [ngStyle.xs]="{'width.%': 40, 'height.em': 4, 'border-radius.%': 0}"> 
+      Editer 
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+</div>
